@@ -1,0 +1,43 @@
+.swiper-slide {
+  position: relative;
+  max-width: 1170px;
+  width: 100%;
+  height: 520px;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 60px;
+    object-fit: cover;
+  }
+
+  &__title {
+    position: absolute;
+    font-size: 54px;
+    color: #ffffff;
+    text-transform: capitalize;
+    font-family: "GilroyBold", serif;
+    top: 150px;
+    left: 80px;
+  }
+  &__subtitle {
+    position: absolute;
+    font-size: 37px;
+    color: #ffffff;
+    text-transform: capitalize;
+    font-family: "YorktenSlabRegular", serif;
+    top: 220px;
+    left: 80px;
+  }
+}
+
+#shopify-section-slider .swiper-pagination {
+  color: #ffffff;
+  font-family: "GilroyBold", serif;
+  font-size: 14px;
+  position: absolute;
+  left: 80px;
+  bottom: 50px;
+  text-align: left;
+}

@@ -1,0 +1,79 @@
+<div class="swiper-wrapper">
+    {% for block in section.blocks %}
+    {% case block.type %}
+        {% when 'slide' %}
+        <div class="swiper-slide" {{ block.shopify_attributes }}>
+            {{ block.settings.image | img_url: 'master' | img_tag }}
+            <h1 class="swiper-slide__title">
+                {{ block.settings.slider_title }}
+            </h1>
+            <h2 class="swiper-slide__subtitle">
+                {{ block.settings.slider_subtitle }}
+            </h2>
+        </div>
+    {% endcase %}
+
+    {% endfor %}
+
+</div>
+
+<div class="swiper-pagination"></div>
+
+
+{% schema %}
+    {
+    "name": "Slideshow",
+    "tag": "section",
+    "class": "swiper mySwiper wrapper",
+    "settings": [
+        {
+        "type": "text",
+        "id": "title",
+        "label": "Slideshow"
+        }
+    ],
+    "blocks": [
+        {
+        "name": "Slide",
+        "type": "slide",
+        "settings": [
+            {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+            },
+            {
+            "type": "text",
+            "default": "Lightning Fast Shipping",
+            "id": "slider_title",
+            "label": "Slider title"
+            },
+            {
+                "type": "text",
+                "default": "From Our Haus to Yours",
+                "id": "slider_subtitle",
+                "label": "Slider subtitle"
+            }
+        ]
+        }
+    ]
+    }
+{% endschema %}
+
+{% javascript %}
+    var swiper = new Swiper(".mySwiper", {
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            speed: 300,
+        },
+        pagination: {
+        el: ".swiper-pagination",
+        type: "fraction",
+        },
+        navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+        }
+    });
+{% endjavascript %}
