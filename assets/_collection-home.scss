@@ -1,0 +1,90 @@
+.collection-home {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title-wrapper {
+    font-family: "GilroySemiBold", serif;
+  }
+
+  &__title {
+    color: #115e5c;
+  }
+
+  &__subtitle {
+    color: transparent;
+    -webkit-text-stroke: 1px #115e5c;
+  }
+
+  &__show-all {
+    width: 143px;
+    height: 48px;
+    color: #115e5c;
+    font-family: "GilroyBold", serif;
+    border: 1px solid #115e5c;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  &__product-wrapper {
+    padding-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__product {
+    max-width: 270px;
+    width: 100%;
+    padding-bottom: 50px;
+  }
+
+  &__img {
+    position: relative;
+    height: 320px;
+    background-color: #f6f6f6;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__add {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    top: 20px;
+    right: 20px;
+    border: 1px solid #cdcdcd;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: "GilroyBold", serif;
+    font-size: 18px;
+  }
+
+  &__product-info {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+  }
+
+  &__product-title {
+    height: 55px;
+    font-family: "YorktenSlabRegular", serif;
+    line-height: 21px;
+    color: #4d4d4d;
+    padding-bottom: 10px;
+  }
+
+  &__product-price {
+    font-family: "GilroyBold", serif;
+    font-size: 20px;
+  }
+}

@@ -1,0 +1,57 @@
+<section class="links">
+    <div class="links__wrapper wrapper">
+        {% for block in section.blocks %}
+            <a href="{{ block.settings.links_title }}" class="links__block">
+                <div class="links__text">
+                    <p class="links__title">{{ block.settings.links_title }}</p>
+                    <p class="links__subtitle">{{ block.settings.links_subtitle }}</p>
+                </div>
+                <div class="links__circle">
+                    <img src="{{ block.settings.links_img | img_url }}">
+                </div>           
+            </a>
+        {% endfor %}
+    </div>
+</section>
+
+
+{% schema %}
+{
+    "name":"Links block",
+    "tag":"section",
+    "max_blocks":3,
+    "settings":[
+       
+    ],
+    "blocks":[
+       {
+          "name":"Links",
+          "type":"text",
+          "settings":[
+             {
+                "type":"text",
+                "id":"links_title",
+                "default":"Search",
+                "label":"Title link"
+             },
+             {
+                "type":"text",
+                "id":"links_subtitle",
+                "default":"1500+ bottles to choose from",
+                "label":"Subtitle link"
+             },
+             {
+                "type":"url",
+                "id":"links_url",
+                "label":"Url link"
+             },
+             {
+                "type":"image_picker",
+                "id":"links_img",
+                "label":"Image"
+             }
+          ]
+       }
+    ]
+ }
+{% endschema %}

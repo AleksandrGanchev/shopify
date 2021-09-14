@@ -1,0 +1,71 @@
+<div class="collection-home__wrapper wrapper">
+  
+  {% for collection in collections %}
+  {% if collection.id == 279418634404 %}
+  <div class="collection-home__header">
+    <div class="collection-home__title-wrapper">
+      <h1 class="collection-home__title">{{section.settings.title}}</h1>
+      <h1 class="collection-home__subtitle">{{section.settings.subtitle}}</h1>
+    </div>
+    <a class="collection-home__show-all" href="{{ collection.url }}">Show all</a>
+  </div>
+
+    <div class="collection-home__product-wrapper">
+      {% for product in collection.products limit:12 %}
+      {% if product.title == 'PB Chocolati Peanut Butter and Chocolate Whiskey 750ml'%}
+      {% assign product_id = product.id %}
+      {% endif %}
+        <div class="collection-home__product">
+          <form method="post" action="/cart/add">
+            <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+            <input min="1" type="number" id="quantity" name="quantity" value="1"/>
+            <input type="submit" value="Add to cart" class="btn" />
+            <input type = "hidden" name = "return_to" value = "back" />
+         
+          <div class="collection-home__img">
+            <a class="collection-home__img" href="{{ product.url | within: collection }}">
+              <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+            </a>
+            <a class="collection-home__add">+</a>
+          </div>
+          <div class="collection-home__product-info">
+            <a class="collection-home__product-title" href="{{ product.url | within: collection }}">{{ product.title }}</a>
+            <a class="collection-home__product-price"> {{ product.price | money }} </a>
+          </div>
+           </form>
+        </div>
+      {% endfor %}
+      <script>
+        let productId = '{{product_id}}'
+        console.log(productId);
+      </script>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<script>
+  let idProducts = '{{product.id}}'
+  console.log(idProducts);
+</script>
+
+{% schema %}
+{
+  "name":"Collection under 50$",
+  "settings":[
+     {
+        "type":"text",
+        "id":"title",
+        "label":"Title",
+        "default":"Bottles"
+     },
+     {
+        "type":"text",
+        "id":"subtitle",
+        "label":"Subtitle",
+        "default":"Under $50"
+     }
+  ]
+}
+{% endschema %}
+
