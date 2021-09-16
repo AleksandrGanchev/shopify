@@ -1,0 +1,153 @@
+.popup-cart {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  opacity: 0;
+  z-index: 2;
+  transition: opacity 0.4s linear;
+
+  &__wrapper {
+    padding: 40px 30px;
+    width: 350px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 81px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 40px;
+  }
+
+  &__title-cart {
+    position: relative;
+    font-family: "GilroyRegular", serif;
+    font-size: 20px;
+    &::after {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 1px;
+      left: 0;
+      bottom: -20px;
+      background-color: #e7eaf399;
+      opacity: 0.6;
+    }
+  }
+
+  &__cart-popup-wrapper {
+    padding: 35px 0 25px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__cart-popup-img {
+    width: 60px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      width: auto;
+      height: 80px;
+    }
+  }
+
+  &__cart-popup-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__cart-popup-price {
+    font-family: "GilroySemiBold", serif;
+    font-size: 22px;
+    padding-bottom: 15px;
+  }
+
+  &__cart-popup-title {
+    max-width: 175px;
+    width: 100%;
+    font-family: "YorktenSlabRegular";
+    font-size: 14px;
+    line-height: 17px;
+    color: #bababa;
+  }
+
+  &__cart-popup-counter {
+    position: relative;
+    padding: 25px 0;
+    width: 100%;
+    background-color: #fcf9fa;
+    border-radius: 10px;
+    font-family: "GilroyRegular", serif;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      margin: 0 5px;
+      color: #fe7c22;
+    }
+
+    &::after {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 1px;
+      left: 0;
+      bottom: -35px;
+      background-color: #e7eaf399;
+      opacity: 0.6;
+    }
+  }
+
+  &__total-price-wrapper {
+    padding: 80px 0 30px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span {
+      font-family: "GilroyBold", serif;
+      font-size: 22px;
+    }
+  }
+
+  &__total-price-total {
+    font-family: "GilroySemiBold", serif;
+  }
+
+  &__button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    font-family: "GilroyRegular", serif;
+    font-size: 12px;
+  }
+
+  &__continue {
+    max-width: 142px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    outline: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  &__check {
+    max-width: 142px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fe7c22;
+    color: #ffffff;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+  }
+}

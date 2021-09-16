@@ -13,6 +13,7 @@
   {{ 'normalize.css' | asset_url | stylesheet_tag }}
   {{ 'application.css' | asset_url | stylesheet_tag }}
   {{ 'application.js' | asset_url | script_tag }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -41,7 +42,9 @@
   {% endif %} -->
 
   <main role="main">
+    <div class="overlay"></div>
     {{ content_for_layout }}
   </main>
+  {% render 'ajaxify-cart'%} 
 </body>
 </html>

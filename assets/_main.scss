@@ -11,3 +11,30 @@ a {
   color: #000000;
   text-decoration: none;
 }
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(237, 237, 237, 0.5);
+  backdrop-filter: blur(10px);
+  z-index: 2;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.4s linear;
+  cursor: pointer;
+}
+
+.active {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.4s linear;
+}
+
+.popup-cart.active {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.4s linear;
+}
