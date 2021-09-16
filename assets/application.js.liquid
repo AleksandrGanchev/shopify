@@ -1,0 +1,59 @@
+  document.addEventListener('DOMContentLoaded', () => {
+    
+    if (document.querySelector('.collection-home__wrapper')){
+
+        const buttonAddCart = document.querySelectorAll('.collection-home__add'),
+        overlay = document.querySelector('.overlay'),
+        popup = document.querySelector('.popup-cart'),
+        buttonPopupClose = document.querySelector('.popup-cart__continue'),
+        popupImg = document.querySelector('.popup-cart__cart-popup-img img'),
+        popupTitle = document.querySelector('.popup-cart__cart-popup-title'),
+        popupPrice = document.querySelector('.popup-cart__cart-popup-price'),
+        form = document.querySelector('.collection-home__form');
+
+
+        
+        {% for collection in collections %}
+        {% if collection.id == 279418634404 %}
+        {% for product in collection.products %}
+          
+        console.log({{ product.id }});
+
+      buttonAddCart.forEach(button => {
+        button.addEventListener('click', () => {
+
+          form.addEventListener('submit', (e) => {
+            e.preventDefault();
+        
+          if (button.getAttribute('data-id') === '{{ product.id }}') {
+            
+            popupImg.setAttribute('src', '{{product.featured_image.src | img_url }}');
+            popupTitle.innerHTML = "{{ product.title }}";
+            popupPrice.textContent = '{{ product.price | money }}'
+            overlay.classList.add('active')
+            popup.classList.add('active')
+            }
+          });
+        });
+      });
+
+      buttonPopupClose.addEventListener('click', () => {
+        overlay.classList.remove('active')
+        popup.classList.remove('active')
+      });
+
+      overlay.addEventListener('click', (e) => {
+        if (e.target) {
+          overlay.classList.remove('active')
+          popup.classList.remove('active')
+        }
+      });
+
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+
+    }
+
+  })
+
