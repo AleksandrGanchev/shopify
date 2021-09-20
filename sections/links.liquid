@@ -7,7 +7,7 @@
                     <p class="links__subtitle">{{ block.settings.links_subtitle }}</p>
                 </div>
                 <div class="links__circle">
-                    <img src="{{ block.settings.links_img | img_url }}">
+                    <img loading="lazy" width="{{ image.width }}" height="{{ image.height }}" src="{{ block.settings.links_img | img_url }}">
                 </div>           
             </a>
         {% endfor %}

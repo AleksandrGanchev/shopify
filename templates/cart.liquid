@@ -3,7 +3,6 @@
   <div class="cart__title">My Cart <span>({{ cart.item_count }})</span></div>
   <form action="/cart" method="post" novalidate>
 
-
     <div class="cart__table-wrapper">
       <div class="cart__table-header">
         <p class="cart__table-product">Product</p>
@@ -11,7 +10,6 @@
         <p class="cart__table-qty">QTY</p>
         <p class="cart__table-total">Total</p>
       </div>
-
 
       <div class="cart__table-product-wrapper">
         {% for item in cart.items %}
@@ -44,13 +42,16 @@
       </div>
     </div>
 
-
     <div>
       <p>sub total : {{ cart.total_price | money }}</p>
       <button type="submit" name="update">Update</button>
       <button type="submit" name="checkout">Checkout</button>
     </div>
   </form>
+
+  div.cart__
+
+
   {% else %}
   <div class="cart__title">My Cart <span>({{ cart.item_count }})</span></div>
   <form action="/cart" method="post" novalidate>
