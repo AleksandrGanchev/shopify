@@ -1,80 +1,165 @@
-<div class="collection-home__wrapper wrapper">
+    <div class="collection-home__wrapper wrapper">
 
-  {% for collection in collections %}
-  {% if collection.id == 279418634404 %}
-  <div class="collection-home__header">
-    <div class="collection-home__title-wrapper">
-      <h1 class="collection-home__title">{{section.settings.title}}</h1>
-      <h1 class="collection-home__subtitle">{{section.settings.subtitle}}</h1>
+        {% for collection in collections %}
+            {% if collection.id == 279418634404 %}
+                <div class="collection-home__header">
+                    <div class="collection-home__title-wrapper">
+                        <h1 class="collection-home__title">{{ section.settings.title }}</h1>
+                        <h1 class="collection-home__subtitle">{{ section.settings.subtitle }}</h1>
+                    </div>
+                    <a class="collection-home__show-all" href="{{ collection.url }}">Show all</a>
+                </div>
+
+                <form class="collection-home__form collection-home__product-wrapper" method="post" action="/cart/add">
+                    {% for product in collection.products limit: 12 %}
+                        <div class="collection-home__product">
+                            <input class="data-input" type="hidden" name="id" value="{{ product.variants.first.id }}"/>
+                            <div class="collection-home__img">
+                                <a class="collection-home__img" href="{{ product.url | within: collection }}">
+                                    <img src="{{ product.featured_image.src | img_url: 'large' }}" loading="lazy"
+                                         width="{{ image.width }}" height="{{ image.height }}"
+                                         alt="{{ product.featured_image.alt | escape }}">
+                                </a>
+                                <input type="submit" value="+" class="collection-home__add"
+                                       data-variant="{{ product.variants.first.id }}" data-id="{{ product.id }}">
+                            </div>
+                            <div class="collection-home__product-info">
+                                <a class="collection-home__product-title"
+                                   href="{{ product.url | within: collection }}">{{ product.title }}</a>
+                                <a class="collection-home__product-price"> {{ product.price | money }} </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </form>
+            {% endif %}
+        {% endfor %}
     </div>
-    <a class="collection-home__show-all" href="{{ collection.url }}">Show all</a>
-  </div>
-    <form class="collection-home__form collection-home__product-wrapper" method="post" action="/cart/add">
-    {% for product in collection.products limit: 12 %}
-    <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-      <div class="collection-home__product">
-        <div class="collection-home__img">
-          <a class="collection-home__img" href="{{ product.url | within: collection }}">
-            <img src="{{ product.featured_image.src | img_url: 'large' }}" loading="lazy" width="{{ image.width }}" height="{{ image.height }}"
-              alt="{{ product.featured_image.alt | escape }}">
-          </a>
-          <input type="submit" value="+" class="collection-home__add" data-id="{{ product.id }}"></input>
+    <div class="popup-cart popup-cart__wrapper">
+        <p class="popup-cart__title-cart"></p>
+        <div class="popup-cart__cart-popup-wrapper">
+            <div class="popup-cart__cart-popup-img">
+                <img src="" alt="" loading="lazy" width="80" height="auto">
+            </div>
+            <div class="popup-cart__cart-popup-text">
+                <p class="popup-cart__cart-popup-price"></p>
+                <p class="popup-cart__cart-popup-title"></p>
+            </div>
         </div>
-        <div class="collection-home__product-info">
-          <a class="collection-home__product-title" href="{{ product.url | within: collection }}">{{ product.title }}</a>
-          <a class="collection-home__product-price"> {{ product.price | money }} </a>
+        <div class="popup-cart__cart-popup-counter">
+            You have <span>4</span> items in your cart
         </div>
-      </div>
-   
-    {% endfor %}
-  </form>
-    {% endif %}
-    {% endfor %}
-
-</div>
-
-<div class="popup-cart popup-cart__wrapper">
-  <p class="popup-cart__title-cart">Added to Cart</p>
-  <div class="popup-cart__cart-popup-wrapper">
-    <div class="popup-cart__cart-popup-img">
-      <img src="" alt="" loading="lazy" width="80" height="auto">
+        <div class="popup-cart__total-price-wrapper">
+            <p class="popup-cart__total-price-total">Total:</p>
+            <span>77$</span>
+        </div>
+        <div class="popup-cart__button-wrapper">
+            <a class="popup-cart__continue">Continue Shopping</a>
+            <a class="popup-cart__check" href="/cart">Check Out</a>
+        </div>
     </div>
-    <div class="popup-cart__cart-popup-text">
-      <p class="popup-cart__cart-popup-price"></p>
-      <p class="popup-cart__cart-popup-title"></p>
-    </div>
-  </div>
-  <div class="popup-cart__cart-popup-counter">
-    You have <span>4</span> items in your cart
-  </div>
-  <div class="popup-cart__total-price-wrapper">
-    <p class="popup-cart__total-price-total">Total:</p>
-    <span>77$</span>
-  </div>
-  <div class="popup-cart__button-wrapper">
-    <a class="popup-cart__continue">Continue Shopping</a>
-    <a class="popup-cart__check" href="/cart">Check Out</a>
-  </div>
-</div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            if (document.querySelector('.collection-home__wrapper')) {
+
+                const buttonAddCart = document.querySelectorAll('.collection-home__add'),
+                    overlay = document.querySelector('.overlay'),
+                    popup = document.querySelector('.popup-cart'),
+                    buttonPopupClose = document.querySelector('.popup-cart__continue'),
+                    popupImg = document.querySelector('.popup-cart__cart-popup-img img'),
+                    popupTitle = document.querySelector('.popup-cart__cart-popup-title'),
+                    popupPrice = document.querySelector('.popup-cart__cart-popup-price'),
+                    form = document.querySelector('.collection-home__form');
 
 
 
-{% schema %}
+                let addToCartForm = document.querySelector('form[action="/cart/add"]'),
+                    formData = new FormData(addToCartForm),
+                    addToCartInput = document.querySelectorAll('.data-input'),
+                    successText  = document.querySelector('.popup-cart__title-cart');
+
+
+
+                {% for collection in collections %}
+                {% if collection.id == 279418634404 %}
+                {% for product in collection.products %}
+
+
+
+                buttonAddCart.forEach(button => {
+                    button.addEventListener('click', () => {
+
+                        form.addEventListener('submit', (e) => {
+                            e.preventDefault();
+                            addToCartInput.forEach(input => {
+                                if (button.getAttribute('data-id') === '{{ product.id }}' && button.getAttribute('data-variant') === input.value) {
+                                    fetch('/cart/add.js', {
+                                        method: 'POST',
+                                        body: formData
+                                    })
+                                        .then(response => {
+                                            return response.json();
+
+                                        })
+                                        .catch((error) => {
+                                            console.error('Error:', error);
+                                            successText.textContent = 'Error';
+                                            console.log(response)
+                                        });
+
+                                    popupImg.setAttribute('src', '{{ product.featured_image.src | img_url }}');
+                                    popupTitle.innerHTML = "{{ product.title }}";
+                                    popupPrice.textContent = '{{ product.price | money }}'
+                                    overlay.classList.add('active')
+                                    popup.classList.add('active')
+                                }
+                            })
+                        });
+                    });
+                });
+
+                buttonPopupClose.addEventListener('click', () => {
+                    overlay.classList.remove('active')
+                    popup.classList.remove('active')
+                });
+
+                overlay.addEventListener('click', (e) => {
+                    if (e.target) {
+                        overlay.classList.remove('active')
+                        popup.classList.remove('active')
+                    }
+                });
+
+
+
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+
+
+            }
+
+        })
+
+    </script>
+
+
+    {% schema %}
 {
-  "name":"Collection under 50$",
-  "settings":[
-     {
-        "type":"text",
-        "id":"title",
-        "label":"Title",
-        "default":"Bottles"
-     },
-     {
-        "type":"text",
-        "id":"subtitle",
-        "label":"Subtitle",
-        "default":"Under $50"
-     }
-  ]
+   "name":"Collection under 50$",
+   "settings":[
+      {
+         "type":"text",
+         "id":"title",
+         "label":"Title",
+         "default":"Bottles"
+      },
+      {
+         "type":"text",
+         "id":"subtitle",
+         "label":"Subtitle",
+         "default":"Under $50"
+      }
+   ]
 }
-{% endschema %}
+    {% endschema %}
