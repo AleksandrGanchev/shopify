@@ -14,8 +14,6 @@
     {% for product in collection.products limit:12 %}
     <form class="collection-home__form" method="post" action="/cart/add">
       <input type="hidden" name="id" value="{{ product.variants.first.id }}" />
-      <input min="1" type="number" id="quantity" name="quantity" value="1" />
-
       <div class="collection-home__product">
         <div class="collection-home__img">
           <a class="collection-home__img" href="{{ product.url | within: collection }}">
@@ -49,11 +47,11 @@
     </div>
   </div>
   <div class="popup-cart__cart-popup-counter">
-    You have <span>4</span> items in your cart
+    You have <span>{{ cart.item_count }}</span> items in your cart
   </div>
   <div class="popup-cart__total-price-wrapper">
     <p class="popup-cart__total-price-total">Total:</p>
-    <span>77$</span>
+    <span>{{ cart.total_price | money }}</span>
   </div>
   <div class="popup-cart__button-wrapper">
     <a class="popup-cart__continue">Continue Shopping</a>
@@ -103,6 +101,9 @@
 
     buttonAddCart.forEach(button => {
       button.addEventListener('click', (e) => {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+        })
         if (button.getAttribute('data-id') === '{{ product.id }}') {
           console.log('{{ product.id }}');
           postData();

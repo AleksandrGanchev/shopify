@@ -1,46 +1,75 @@
-{% if cart.item_count > 0 %}
-  <h1>cart</h1>
+<div class="cart__wrapper wrapper">
+  {% if cart.item_count > 0 %}
+  <div class="cart__title">My Cart <span>({{ cart.item_count }})</span></div>
   <form action="/cart" method="post" novalidate>
-    <table>
-      <thead>
-        <th colspan="2">Prod</th>
-        <th>Price</th>
-        <th>Qty</th>
-        <th>total</th>
-      </thead>
-      <tbody>
+
+
+    <div class="cart__table-wrapper">
+      <div class="cart__table-header">
+        <p class="cart__table-product">Product</p>
+        <p class="cart__table-price">Price</p>
+        <p class="cart__table-qty">QTY</p>
+        <p class="cart__table-total">Total</p>
+      </div>
+
+
+      <div class="cart__table-product-wrapper">
         {% for item in cart.items %}
-          <tr>
-            <td>
-              <a href="{{ item.url | within: collections.all }}">
-                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
-              </a>
-            </td>
-            <td>
-              <a href="{{ item.url }}">{{ item.product.title }}</a>
-              {{ item.variant.title }}
-              <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">remove</a>
-            </td>
-            <td>{{ item.price | money }}</td>
-            <td>
-              <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
-            </td>
-            <td>
-              {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
-              {{ item.line_price | money }}
-              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
-            </td>
-          </tr>
+        <div class="cart__product-wrapper">
+          <div class="cart__product-img-wrapper">
+            <a href="{{ item.url | within: collections.all }}">
+              <img class="cart__product-img" src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+            </a>
+          </div>
+          <div class="cart__product-title-wrapper">
+            <a class="cart__product-title" href="{{ item.url }}">{{ item.product.title }}</a>
+            <p class="cart__product-variant">{{ item.variant.title }}</p>
+          </div>
+        </div>
+        <div class="cart__product-price">{{ item.price | money }}</div>
+        <div class="cart__product-qty">
+          <input class="cart__product-qty-input" type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0">
+        </div>
+        <div class="cart__product-total">
+          {% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
+          {{ item.line_price | money }}
+          {% for discount in item.discounts %}{{ discount.title }}{% endfor %}
+        </div>
+        <div class="cart__product-close">
+          <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0">
+          <div class="cart__product-close-icon"> {% render "close" %} </div>
+          </a>
+        </div>
         {% endfor %}
-      </tbody>
-    </table>
+      </div>
+    </div>
+
+
     <div>
       <p>sub total : {{ cart.total_price | money }}</p>
       <button type="submit" name="update">Update</button>
       <button type="submit" name="checkout">Checkout</button>
     </div>
   </form>
-{% else %}
-  <h2>cart</h2>
-  Cart is empty
-{% endif %}
+  {% else %}
+  <div class="cart__title">My Cart <span>({{ cart.item_count }})</span></div>
+  <form action="/cart" method="post" novalidate>
+
+
+    <div class="cart__table-wrapper">
+      <div class="cart__table-header">
+        <p class="cart__table-product">Product</p>
+        <p class="cart__table-price">Price</p>
+        <p class="cart__table-qty">QTY</p>
+        <p class="cart__table-total">Total</p>
+      </div>
+
+  <p class="cart__empty">Empty cart</p>
+  <div>
+    <p>sub total : {{ cart.total_price | money }}</p>
+    <button type="submit" name="update">Update</button>
+    <button type="submit" name="checkout">Checkout</button>
+  </div>
+</form>
+  {% endif %}
+</div>

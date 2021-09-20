@@ -4,9 +4,9 @@
             <span></span>
             <span></span>
         </div>
-        <div class="header__logo">
+        <a class="header__logo" href="/">
             <img src="{{ section.settings.logo | img_url }}">
-        </div>
+        </a>
         <div class="header__block">
             <div class="header__acсount">
                 <a href="" class="header__log-in">Log in</a>
@@ -17,7 +17,7 @@
             </a>
             <a href="/cart" class="header__card">
                 {{ 'card.svg' | asset_url | img_tag }}
-                <span class="header__price">1050 UAH</span>
+                <span class="header__price">{{ cart.total_price | money }}</span>
             </a>
         </div>
     </div>
