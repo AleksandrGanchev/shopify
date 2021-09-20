@@ -1,0 +1,119 @@
+.cart {
+  &__title {
+    padding-top: 25px;
+    position: relative;
+    font-family: "GilroySemiBold", serif;
+    font-size: 40px;
+    margin-bottom: 100px;
+
+    &::before {
+      position: absolute;
+      content: "";
+      width: 290px;
+      height: 4px;
+      bottom: -20px;
+      background-color: #191817;
+    }
+  }
+  &__table-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__table-header,
+  &__table-product-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 50px;
+  }
+
+  &__table-product,
+  &__table-total {
+    width: 35%;
+    text-align: center;
+    font-family: "GilroyRegular", serif;
+  }
+  &__table-price,
+  &__table-qty {
+    width: 15%;
+    text-align: center;
+    font-family: "GilroyRegular", serif;
+  }
+  &__product-wrapper {
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__product-img-wrapper {
+    width: 37px;
+    height: 84px;
+    border: 1px solid #e6e6e6;
+    margin-right: 50px;
+  }
+  &__product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  &__product-title {
+    display: block;
+    max-width: 200px;
+    width: 100%;
+    font-family: "YorktenSlabRegular", serif;
+    line-height: 25px;
+    color: #1a1817;
+    padding-bottom: 15px;
+  }
+
+  &__product-variant {
+    font-family: "GilroyBold", serif;
+    color: #a8a4a1;
+  }
+  &__product-price,
+  &__product-total {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "GilroySemiBold", serif;
+    font-size: 24px;
+  }
+  &__product-total {
+    width: 30%;
+    padding-left: 65px;
+  }
+  &__product-qty {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__product-qty-input {
+    width: 45px;
+    // border: none;
+    outline: none;
+    text-align: center;
+  }
+  &__product-close {
+    width: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__product-close-icon {
+    width: 25px;
+    height: 25px;
+  }
+  &__empty {
+    width: 100%;
+    text-align: center;
+    font-family: "GilroyBold", serif;
+    font-size: 24px;
+  }
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  opacity: 1;
+}
