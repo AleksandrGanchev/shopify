@@ -1,6 +1,73 @@
 {
-  "current": "Default",
+  "current": {
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo": "shopify:\/\/shop_images\/liquor.png"
+        }
+      },
+      "menu": {
+        "type": "menu",
+        "settings": {
+        }
+      },
+      "slider": {
+        "type": "slider",
+        "blocks": {
+          "9b92308c-4ffe-4a64-9642-ffd47bd48d71": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/index-bg.png",
+              "slider_title": "Lightning Fast Shipping",
+              "slider_subtitle": "From Our Haus to Yours"
+            }
+          },
+          "d7b9c697-8afa-45f5-b2dd-83776277db0e": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/several-different-fruits-lay-on-a-pink-background.jpg",
+              "slider_title": "Lightning Fast Shipping",
+              "slider_subtitle": "From Our Haus to Yours"
+            }
+          },
+          "70d768a7-9e7b-4bf2-8a5f-7e082d2a81d0": {
+            "type": "slide",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/vanilla-milkshake-on-pinks.jpg",
+              "slider_title": "Lightning Fast Shipping",
+              "slider_subtitle": "From Our Haus to Yours"
+            }
+          }
+        },
+        "block_order": [
+          "9b92308c-4ffe-4a64-9642-ffd47bd48d71",
+          "d7b9c697-8afa-45f5-b2dd-83776277db0e",
+          "70d768a7-9e7b-4bf2-8a5f-7e082d2a81d0"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "links": {
+        "type": "links",
+        "settings": {
+        }
+      },
+      "collection-home": {
+        "type": "collection-home",
+        "settings": {
+          "title": "Bottles",
+          "subtitle": "Under $50"
+        }
+      }
+    },
+    "content_for_index": [
+
+    ]
+  },
   "presets": {
-    "Default": { }
+    "Default": {
+    }
   }
 }
