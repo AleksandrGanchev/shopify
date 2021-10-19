@@ -81,18 +81,16 @@
       ];
   }
   
-  documentMediaReady(mediaReplace);
-  function documentMediaReady(fu) {
-     var media_time = {{ shop.metafields.etranslate-app.effective-time |json}}
-     var myDate = new Date();
-     var compare_data = compareDate(media_time,myDate)
-    if (document.readyState === 'complete' || document.readyState === 'interactive') {
-      setTimeout(documentReady(mediaReplace), 1);
-    } else {
-       if(compare_data){
-        setTimeout(fu, 800);
-       }
-    }
+  const configImg = { attributes: true, childList: true };
+  const listenImg = function (element) {
+    element.forEach(function (item, index) {
+      mediaReplace();
+    })
+  }
+  const observerImg = new MutationObserver(listenImg);
+  window.onload = function () {
+    mediaReplace();
+    observerImg.observe(document.body, configImg);
   }
   
 function getQueryVariable(variable,query){if(query.indexOf("cdn.shopify")<=0){return false}var url_search=query.split("?")[0];if(url_search){var vars=url_search.split("/");if(vars&&vars[0]){var http_name=vars[vars.length-1];var http_array=http_name.split("_");if(http_array&&http_array[0]){var file_size_name="";var suffix_name=http_array[http_array.length-1].split(".")[1];for(var b=0;b<http_array.length-1;b++){if(b<http_array.length-2){file_size_name=file_size_name+http_array[b]+"_"}else{file_size_name=file_size_name+http_array[b]+"."+suffix_name}}if(file_size_name){return file_size_name}}return http_name}}return false};
